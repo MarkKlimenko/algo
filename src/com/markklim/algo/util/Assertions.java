@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Assertions {
     public static void assertEquals(Serializable expected, Serializable actual) {
         if (!expected.equals(actual)) {
-            throw new AssertionError("Not equal");
+            throw new AssertionError("Not equal " + expected + " to " + actual);
         }
     }
 
