@@ -24,27 +24,27 @@ public class Main {
         sort(0, arr.length - 1, arr);
     }
 
-    private static void sort(int start, int finish, int[] arr) {
-        if (start < finish) {
-            int pivotIndex = partition(start, finish, arr);
-            sort(start, pivotIndex - 1, arr);
-            sort(pivotIndex + 1, finish, arr);
+    private static void sort(int left, int right, int[] arr) {
+        if (left < right) {
+            int pivotIndex = partition(left, right, arr);
+            sort(left, pivotIndex - 1, arr);
+            sort(pivotIndex + 1, right, arr);
         }
     }
 
-    private static int partition(int start, int finish, int[] arr) {
-        int pivot = arr[finish];
-        int i = start - 1;
+    private static int partition(int left, int right, int[] arr) {
+        int pivot = arr[right];
+        int i = left - 1;
 
-        for(int j = start; j < finish; j++) {
-            if(arr[j] < pivot) {
+        for (int j = left; j < right; j++) {
+            if (arr[j] < pivot) {
                 i++;
                 swap(i, j, arr);
             }
         }
 
         i++;
-        swap(i, finish, arr);
+        swap(i, right, arr);
         return i;
     }
 
