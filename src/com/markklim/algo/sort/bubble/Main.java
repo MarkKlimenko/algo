@@ -12,6 +12,7 @@ public class Main {
         Arrays.sort(expectedArr);
 
         sort(arr);
+        sort(arr);
         assertEquals(0, Arrays.compare(expectedArr, arr));
     }
 
@@ -19,20 +20,20 @@ public class Main {
         for (int i = 0; i < arr.length - 1; i++) {
             // use swapped for quick return from for
             boolean swapped = false;
-            for (int j = 0; j < arr.length - 1; j++) {
-                int left = arr[j];
-                int right = arr[j + 1];
 
-                if (left > right) {
-                    arr[j] = right;
-                    arr[j + 1] = left;
+            // use (arr.length - i) for limitation
+            for (int j = 0; j < arr.length - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int buf = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = buf;
 
                     swapped = true;
                 }
             }
 
-            if(!swapped) {
-                break;
+            if (!swapped) {
+                return;
             }
         }
     }

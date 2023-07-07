@@ -18,7 +18,9 @@ public class Main {
         int finish = arr.length - 1;
 
         while (finish >= start) {
-            //int middle = (start + finish) / 2;
+            // this solution could cause overflow
+            // int middle = (start + finish) / 2;
+
             int middle = start + (finish - start) / 2;
 
             if (value == arr[middle]) {
