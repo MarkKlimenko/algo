@@ -20,37 +20,37 @@ public class Main {
         assertEquals(0, Arrays.compare(expectedEmpty, arrEmpty));
     }
 
-    private static void quickSort(int[] arr) {
-        sort(0, arr.length - 1, arr);
+    public static void quickSort(int[] arr) {
+        sort(arr, 0, arr.length - 1);
     }
 
-    private static void sort(int left, int right, int[] arr) {
+    private static void sort(int[] arr, int left, int right) {
         if (left < right) {
-            int pivotIndex = partition(left, right, arr);
-            sort(left, pivotIndex - 1, arr);
-            sort(pivotIndex + 1, right, arr);
+            int pivotIndex = partition(arr, left, right);
+            sort(arr, left, pivotIndex - 1);
+            sort(arr, pivotIndex + 1, right);
         }
     }
 
-    private static int partition(int left, int right, int[] arr) {
-        int pivot = arr[right];
-        int i = left - 1;
+    private static int partition(int[] arr, int left, int right) {
+        int pivotValue = arr[right];
+        int insertPointer = left - 1;
 
-        for (int j = left; j < right; j++) {
-            if (arr[j] < pivot) {
-                i++;
-                swap(i, j, arr);
+        for (int i = left; i < right; i++) {
+            if (arr[i] < pivotValue) {
+                insertPointer++;
+                swap(arr, i, insertPointer);
             }
         }
 
-        i++;
-        swap(i, right, arr);
-        return i;
+        insertPointer++;
+        swap(arr, insertPointer, right);
+        return insertPointer;
     }
 
-    private static void swap(int i, int j, int[] arr) {
-        int buf = arr[i];
-        arr[i] = arr[j];
-        arr[j] = buf;
+    private static void swap(int[] arr, int left, int right) {
+        int buf = arr[left];
+        arr[left] = arr[right];
+        arr[right] = buf;
     }
 }
